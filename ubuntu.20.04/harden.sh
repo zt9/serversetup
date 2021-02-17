@@ -55,6 +55,9 @@ echo 'PrintLastLog yes' >> /etc/ssh/sshd_config
 sed "/^ *DenyUsers/d" -i /etc/ssh/sshd_config
 echo 'DenyUsers root' >> /etc/ssh/sshd_config
 
+sed  "/^ *Port/d" -i /etc/ssh/sshd_config
+echo 'Port 2222' >> /etc/ssh/sshd_config
+
 sed "/^[ #]*HostKey \/etc\/ssh\/ssh_host_dsa_key/d" -i /etc/ssh/sshd_config
 for type in {rsa,ecdsa,ed25519}; do
   sed "s/^[ #]*HostKey \/etc\/ssh\/ssh_host_${type}_key/HostKey \/etc\/ssh\/ssh_host_${type}_key/" -i /etc/ssh/sshd_config
