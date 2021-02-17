@@ -62,11 +62,13 @@ done
 
 #  Allow only 3DES and AES series ciphers
 sed "/^ *Ciphers/d" -i /etc/ssh/sshd_config
-echo 'Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr' >> /etc/ssh/sshd_config
+echo 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc' >> /etc/ssh/sshd_config
 
 # Disallow Weak MACs
 sed "/^ *MACs/d" -i /etc/ssh/sshd_config
-echo 'MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,hmac-sha1' >> /etc/ssh/sshd_config
+echo 'macs hmac-sha1,umac-64@openssh.com,hmac-sha2-256,hmac-sha2-512' >> /etc/ssh/sshd_config
+
+
 
 cat << EOF > /etc/issue
 Unauthorized use is strictly prohibited. All access and activity
